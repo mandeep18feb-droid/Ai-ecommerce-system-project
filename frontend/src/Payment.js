@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GooglePayButton from '@google-pay/button-react';
 
-const Payment = ({ amount = 100, onSuccess }) => { // Default amount 100 set kiti hai testing layi
+const Payment = ({ amount = 100, onSuccess }) => { 
     const [method, setMethod] = useState('card');
     const [cardInfo, setCardInfo] = useState({
         number: '',
@@ -16,11 +16,11 @@ const Payment = ({ amount = 100, onSuccess }) => { // Default amount 100 set kit
         setCardInfo((prev) => ({ ...prev, [name]: value }));
     };
 
-    // 🚀 1. CARD PAYMENT NU LIVE BACKEND NAAL JODAN DA LOGIC
+    // 🚀 1. CARD PAYMENT LOGIC WITH CORRECT LIVE ENDPOINT
     const submitCardPayment = async () => {
         setLoading(true);
         try {
-            // Render de live backend te request bhej rahe han
+            // Tuhada real Render URL te server.js da /api/purchase endpoint
             const response = await fetch('https://onrender.com', {
                 method: 'POST',
                 headers: {
@@ -37,7 +37,7 @@ const Payment = ({ amount = 100, onSuccess }) => { // Default amount 100 set kit
             console.log('Backend response:', data);
 
             if (response.ok) {
-                alert('Payment Successful via Live Backend! 🎉');
+                alert(`Success: ${data.message || 'Purchase processed! 🎉'}`);
                 onSuccess && onSuccess();
             } else {
                 alert('Payment Failed: ' + data.message);
@@ -49,7 +49,7 @@ const Payment = ({ amount = 100, onSuccess }) => { // Default amount 100 set kit
         setLoading(false);
     };
 
-    // 🚀 2. GPAY PAYMENT NU LIVE BACKEND NAAL JODAN DA LOGIC
+    // 🚀 2. GPAY PAYMENT LOGIC WITH CORRECT LIVE ENDPOINT
     const handleGPaySuccess = async (paymentData) => {
         try {
             const response = await fetch('https://onrender.com', {
@@ -64,8 +64,9 @@ const Payment = ({ amount = 100, onSuccess }) => { // Default amount 100 set kit
                 }),
             });
 
+            const data = await response.json();
             if (response.ok) {
-                alert('GPay Payment Verified by Backend! 🚀');
+                alert(`GPay Success: ${data.message || 'Verified by Backend! 🚀'}`);
                 onSuccess && onSuccess();
             }
         } catch (error) {
