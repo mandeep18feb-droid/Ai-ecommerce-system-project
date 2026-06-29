@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Payment from './Payment';
 
-const BACKEND_URL = 'https://onrender.com';
+// 🚀 1. Tuhada bilkul sahi te live Render backend URL
+const BACKEND_URL = 'https://ai-ecommerce-system-project.onrender.com';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,8 @@ function App() {
   const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/api/products`)
+    // Force fresh build with cache-busting timestamp
+    fetch(`${BACKEND_URL}/api/products?t=${Date.now()}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -24,6 +26,7 @@ function App() {
       .catch(() => loadFallbackProducts());
   }, []);
 
+  // 🖼️ 2. High-quality direct Unsplash image URLs for your catalog
   const loadFallbackProducts = () => {
     setProducts([
       { id: 'P001', name: 'Premium AI Smartphone', price: 45000, category: 'Electronics', image: 'https://unsplash.com' },
@@ -47,14 +50,13 @@ function App() {
     setLoadingAI(true);
     setTimeout(() => {
       setRecommendations([
-        { product_id: 'P001', name: 'Premium AI Smartphone (98% Match Match)' },
+        { product_id: 'P001', name: 'Premium AI Smartphone (98% Match)' },
         { product_id: 'P005', name: 'UltraWide Gaming Monitor (91% Match)' }
       ]);
       setLoadingAI(false);
     }, 800);
   };
 
-  // 📈 Translated AI Price Forecast Prediction logic to English
   const fetchPriceForecast = (productId, currentPrice) => {
     const predictedPrice = Math.round(currentPrice * (0.88 + Math.random() * 0.2));
     let trendMessage = "";
@@ -76,7 +78,9 @@ function App() {
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '20px', borderBottom: '1px solid #1c2541' }}>
         <h2 style={{ color: '#4cc9f0', margin: 0, cursor: 'pointer' }} onClick={() => setShowCart(false)}>⚡ AI-ecommerce-system</h2>
         <nav style={{ display: 'flex', alignItems: 'center' }}>
-          <span onClick={fetchAIRecommendations} style={{ marginRight: '20px', cursor: 'pointer', color: '#4cc9f0', fontWeight: 'bold' }}>🤖 Run AI Models</span>
+          <span onClick={fetchAIRecommendations} style={{ marginRight: '20px', cursor: 'pointer', color: '#4cc9f0', fontWeight: 'bold' }}>
+            {loadingAI ? '🤖 Processing...' : '🤖 Run AI Models'}
+          </span>
           <span onClick={() => setShowCart(!showCart)} style={{ marginRight: '20px', cursor: 'pointer', backgroundColor: '#1c2541', padding: '8px 15px', borderRadius: '4px', fontWeight: 'bold' }}>
             🛒 Cart ({cart.reduce((sum, item) => sum + item.qty, 0)})
           </span>
@@ -131,7 +135,7 @@ function App() {
                 <div key={product.id} style={{ backgroundColor: '#1c2541', padding: '15px', borderRadius: '8px', width: '30%', minWidth: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <div style={{ width: '100%', height: '180px', borderRadius: '6px', overflow: 'hidden', backgroundColor: '#0b1329', marginBottom: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e)=>{e.target.src="https://unsplash.com"}}/>
+                      <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e)=>{e.target.src="https://unsplash.com"}}/>
                     </div>
                     <span style={{ fontSize: '0.75rem', backgroundColor: '#0b1329', padding: '4px 8px', borderRadius: '4px', color: '#a2a8d3' }}>{product.category}</span>
                     <h3 style={{ margin: '10px 0 5px 0', fontSize: '1.2rem' }}>{product.name}</h3>

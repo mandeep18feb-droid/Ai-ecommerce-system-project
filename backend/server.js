@@ -8,7 +8,7 @@ app.use(express.json());
 const authRoutes = require('./auth');
 app.use('/api/auth', authRoutes);
 
-// 🛍️ Product browsing route updated with 5 items containing image URLs
+// 🛍️ Product browsing route with stable public image URLs
 app.get('/api/products', (req, res) => {
     const productCatalog = [
         { 
@@ -16,35 +16,35 @@ app.get('/api/products', (req, res) => {
             name: 'Premium AI Smartphone', 
             price: 45000, 
             category: 'Electronics',
-            image: 'https://media-amazon.com' 
+            image: 'https://unsplash.com' 
         },
         { 
             id: 'P002', 
             name: 'Noise Cancelling Headphones', 
             price: 8500, 
             category: 'Audio',
-            image: 'https://media-amazon.com' 
+            image: 'https://unsplash.com' 
         },
         { 
             id: 'P003', 
             name: 'Smart Fitness Band', 
             price: 3200, 
             category: 'Wearables',
-            image: 'https://media-amazon.com' 
+            image: 'https://unsplash.com' 
         },
         { 
             id: 'P004', 
             name: 'Mechanical Gaming Keyboard', 
             price: 4500, 
             category: 'Accessories',
-            image: 'https://media-amazon.com' 
+            image: 'https://unsplash.com' 
         },
         { 
             id: 'P005', 
             name: 'UltraWide Gaming Monitor', 
             price: 28000, 
             category: 'Electronics',
-            image: 'https://media-amazon.com' 
+            image: 'https://unsplash.com' 
         }
     ];
     res.json(productCatalog);
