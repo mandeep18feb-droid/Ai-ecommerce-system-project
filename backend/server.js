@@ -8,12 +8,17 @@ app.use(express.json());
 const authRoutes = require('./auth');
 app.use('/api/auth', authRoutes);
 
-// Product browsing route (placeholder)
+// 🛍️ 1. Product browsing route (Updated with real products list)
 app.get('/api/products', (req, res) => {
-    res.json({ message: 'Product catalog' });
+    const productCatalog = [
+        { id: 'P001', name: 'Premium AI Smartphone', price: 45000, category: 'Electronics' },
+        { id: 'P002', name: 'Noise Cancelling Headphones', price: 8500, category: 'Audio' },
+        { id: 'P003', name: 'Smart Fitness Band', price: 3200, category: 'Wearables' }
+    ];
+    res.json(productCatalog);
 });
 
-// Purchase route (placeholder)
+// 💳 2. Purchase route (placeholder)
 app.post('/api/purchase', (req, res) => {
     res.json({ message: 'Purchase processed' });
 });
