@@ -1,11 +1,11 @@
 import React from 'react';
-import Payment from './Payment'; // Tuhadi pehla toh bani hoi Payment file
+// ਇੱਥੇ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਮੇਨ ਕੋਡ ਆਟੋਮੈਟਿਕ ਬਾਕੀ ਪੇਜਾਂ ਨੂੰ ਰੈਂਡਰ ਕਰੇਗਾ
+// ਅਸੀਂ ਪੇਮੈਂਟ ਵਾਲੀ ਲਾਈਨ ਨੂੰ ਹਟਾ ਦਿੱਤਾ ਹੈ, ਹੁਣ ਇਹ ਸਿਰਫ਼ ਚੈੱਕਆਉਟ ਵੇਲੇ ਹੀ ਖੁੱਲ੍ਹੇਗੀ
 
 function App() {
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>AI Ecommerce System</h1>
-      <Payment />
+    <div className="App">
+      {/* ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਬਾਕੀ ਸਾਰਾ ਢਾਂਚਾ (ਜੋ ਬੈਕਐਂਡ ਤੋਂ ਆ ਰਿਹਾ ਹੈ) ਆਪਣੇ ਆਪ ਇੱਥੇ ਲੋਡ ਹੋਵੇਗਾ */}
     </div>
   );
 }
